@@ -34,6 +34,7 @@ module "ec2_public_server" {
   ami_id            = var.amzn_linux_ami_id
   key_name          = module.key_pair.key_name
   trusted_ips       = var.trusted_ips
+  iScheduler        = var.iScheduler
 }
 
 /*module "jenkins" {

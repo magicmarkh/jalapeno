@@ -3,6 +3,8 @@ variable "public_subnet_id" {}
 variable "team_name" {}
 variable "asset_owner_name" {}
 variable "ami_id" {}
+variable "iScheduler" {}
+
 variable "instance_type" {
   description = "instance type to be deployed"
   type = string

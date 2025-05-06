@@ -56,3 +56,9 @@ variable "amzn_linux_ami_id" {
   type = string
   default = "ami-058a8a5ab36292159"
 }
+
+variable "iScheduler" {
+  description = "use if the system should be shutdown nightly"
+  type = string
+  default = "US_E_office"
+}

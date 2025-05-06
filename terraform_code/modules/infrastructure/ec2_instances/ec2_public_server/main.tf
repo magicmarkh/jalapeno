@@ -39,5 +39,6 @@ resource "aws_instance" "public_server" {
   tags = {
     Name  = "${var.team_name}-public-linux-server"
     Owner = var.asset_owner_name
+    CA_iScheduler = var.iScheduler
   }
 }
