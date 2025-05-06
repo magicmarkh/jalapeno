@@ -25,6 +25,14 @@ module "key_pair"{
   asset_owner_name = var.asset_owner_name
 }
 
+module "security_groups" {
+  source = "./modules/networking/security_groups"
+  asset_owner_name = var.asset_owner_name
+  vpc_id = module.vpc.vpc_id
+  trusted_ips = var.trusted_ips
+  team_name = var.team_name
+}
+
 module "ec2_public_server" {
   source            = "./modules/infrastructure/ec2_instances/ec2_public_server"
   vpc_id            = module.vpc.vpc_id
@@ -35,6 +43,7 @@ module "ec2_public_server" {
   key_name          = module.key_pair.key_name
   trusted_ips       = var.trusted_ips
   iScheduler        = var.iScheduler
+  vpc_security_group_ids = module.security_groups.trusted_ssh_external_security_group_id
 }
 
 /*module "jenkins" {
