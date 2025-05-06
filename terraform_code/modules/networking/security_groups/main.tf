@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh_from_trusted_ips" {
-  name        = "${var.team_name}-ssh-sg"
+  name        = "${var.team_name}-trusted-external-ssh-sg"
   description = "Allow SSH only from my IP"
   vpc_id      = var.vpc_id
 
