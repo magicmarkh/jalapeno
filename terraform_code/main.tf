@@ -1,4 +1,4 @@
-module "networking" {
+module "vpc" {
   source      = "./modules/networking/vpc"
   region = var.region
   asset_owner_name = var.asset_owner_name
@@ -15,7 +15,7 @@ module "s3_bucket" {
   region              = var.region
   asset_owner_name    = var.asset_owner_name
   bucket_name         = var.team_name
-  s3_vpc_endpoint_id  = module.networking.s3_vpc_endpoint_id
+  s3_vpc_endpoint_id  = module.vpc.s3_vpc_endpoint_id
 }
 
 module "key_pair"{
@@ -27,8 +27,8 @@ module "key_pair"{
 
 module "ec2_public_server" {
   source            = "./modules/infrastructure/ec2_instances/ec2_public_server"
-  vpc_id            = module.networking.vpc_id
-  public_subnet_id  = module.networking.public_subnet_id
+  vpc_id            = module.vpc.vpc_id
+  public_subnet_id  = module.vpc.public_subnet_id
   team_name         = var.team_name
   asset_owner_name  = var.asset_owner_name
   ami_id            = var.amzn_linux_ami_id
