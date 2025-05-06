@@ -38,3 +38,6 @@ terraform.rc
 
 #ignore created pem files
 *.pem
+
+#ignore zip files
+*.zip
