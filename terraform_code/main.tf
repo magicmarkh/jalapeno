@@ -24,6 +24,18 @@ module "key_pair"{
   team_name = var.team_name
   asset_owner_name = var.asset_owner_name
 }
+
+module "ec2_public_server" {
+  source            = "./modules/infrastructure/ec2_instances/ec2_public_server"
+  vpc_id            = module.networking.vpc_id
+  public_subnet_id  = module.networking.public_subnet_id
+  team_name         = var.team_name
+  asset_owner_name  = var.asset_owner_name
+  ami_id            = var.amzn_linux_ami_id
+  key_name          = module.key_pair.key_name
+  trusted_ips       = var.trusted_ips
+}
+
 /*module "jenkins" {
   source               = "./modules/infrastructure/ec2-instances/jenkins"
   vpc_id               = module.vpc.vpc_id

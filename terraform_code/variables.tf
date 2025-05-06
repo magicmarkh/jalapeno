@@ -45,3 +45,14 @@ variable "private_subnet_cidr" {
   default = "192.168.20.0/24"
   type = string
 }
+
+variable "trusted_ips" {
+  description = "trusted public IP's"
+  type = list(string)
+}
+
+variable "amzn_linux_ami_id" {
+  description = "ami id for amazon linux ec2"
+  type = string
+  default = "ami-058a8a5ab36292159"
+}
