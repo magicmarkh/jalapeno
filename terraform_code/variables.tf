@@ -57,6 +57,12 @@ variable "amzn_linux_ami_id" {
   default = "ami-058a8a5ab36292159"
 }
 
+variable "amzn_windows_server_ami_id" {
+  description = "ami id for amazon windows ec2"
+  type = string
+  default = "ami-09466586c38a7b804"
+}
+
 variable "iScheduler" {
   description = "use if the system should be shutdown nightly"
   type = string

@@ -40,11 +40,13 @@ module "ec2_public_server" {
   public_subnet_id  = module.vpc.public_subnet_id
   team_name         = var.team_name
   asset_owner_name  = var.asset_owner_name
-  ami_id            = var.amzn_linux_ami_id
+  linux_ami_id      = var.amzn_linux_ami_id
+  windows_ami_id = var.amzn_windows_server_ami_id
   key_name          = module.key_pair.key_name
   trusted_ips       = var.trusted_ips
   iScheduler        = var.iScheduler
-  vpc_security_group_ids = module.security_groups.trusted_ssh_external_security_group_id
+  linux_security_group_ids = module.security_groups.trusted_ssh_external_security_group_id
+  windows_security_group_ids = module.security_groups.trusted_rdp_external_security_group_id
 }
 
 module "automation_station" {
