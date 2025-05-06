@@ -47,15 +47,15 @@ module "ec2_public_server" {
   vpc_security_group_ids = module.security_groups.trusted_ssh_external_security_group_id
 }
 
-/*module "jenkins" {
-  source               = "./modules/infrastructure/ec2-instances/jenkins"
-  vpc_id               = module.vpc.vpc_id
-  subnet_id            = module.vpc.public_subnet_id
-  ami_list             = var.ami_list
-  instance_type        = var.instance_type
-  key_name             = var.key_name
-  ssh_allowed_cidrs    = var.ssh_allowed_cidrs
-  associate_public_ip  = true
-  team_name            = var.team_name
-  asset_owner_name     = var.asset_owner_name
-}*/
+module "automation_station" {
+  source            = "./modules/infrastructure/ec2_instances/automation_station"
+  vpc_id            = module.vpc.vpc_id
+  private_subnet_id  = module.vpc.private_subnet_id
+  team_name         = var.team_name
+  asset_owner_name  = var.asset_owner_name
+  ami_id            = var.amzn_linux_ami_id
+  key_name          = module.key_pair.key_name
+  iScheduler        = var.iScheduler
+  vpc_security_group_ids = [module.security_groups.ssh_internal_flat_sg_id]
+}
+
