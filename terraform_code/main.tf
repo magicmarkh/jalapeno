@@ -18,6 +18,12 @@ module "s3_bucket" {
   s3_vpc_endpoint_id  = module.networking.s3_vpc_endpoint_id
 }
 
+module "key_pair"{
+  source = "./modules/security/key_pair"
+  server_key_name = "${var.team_name}-key"
+  team_name = var.team_name
+  asset_owner_name = var.asset_owner_name
+}
 /*module "jenkins" {
   source               = "./modules/infrastructure/ec2-instances/jenkins"
   vpc_id               = module.vpc.vpc_id
