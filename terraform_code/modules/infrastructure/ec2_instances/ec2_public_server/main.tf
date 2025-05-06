@@ -22,7 +22,7 @@ resource "aws_instance" "public_windows_server" {
   vpc_security_group_ids      = [var.windows_security_group_ids]
 
   tags = {
-    Name  = "${var.team_name}-public-linux-server"
+    Name  = "${var.team_name}-public-windows-server"
     Owner = var.asset_owner_name
     CA_iScheduler = var.iScheduler
   }
