@@ -61,9 +61,3 @@ resource "aws_s3_bucket_policy" "secure_policy" {
     ]
   })
 }
-
-resource "aws_s3_object" "folders" {
-  for_each = toset(var.folder_names)
-  bucket   = aws_s3_bucket.secure_bucket.id
-  key      = each.key
-}

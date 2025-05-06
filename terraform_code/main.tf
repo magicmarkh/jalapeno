@@ -18,4 +18,15 @@ module "s3_bucket" {
   s3_vpc_endpoint_id  = module.networking.s3_vpc_endpoint_id
 }
 
-
+/*module "jenkins" {
+  source               = "./modules/infrastructure/ec2-instances/jenkins"
+  vpc_id               = module.vpc.vpc_id
+  subnet_id            = module.vpc.public_subnet_id
+  ami_list             = var.ami_list
+  instance_type        = var.instance_type
+  key_name             = var.key_name
+  ssh_allowed_cidrs    = var.ssh_allowed_cidrs
+  associate_public_ip  = true
+  team_name            = var.team_name
+  asset_owner_name     = var.asset_owner_name
+}*/

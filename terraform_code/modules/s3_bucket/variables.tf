@@ -16,12 +16,6 @@ variable "allowed_ips" {
   default     = ["134.238.168.126/32"]
 }
 
-variable "folder_names" {
-  description = "List of “folders” (zero-byte objects) to create"
-  type        = list(string)
-  default     = ["terraform"]
-}
-
 variable "s3_vpc_endpoint_id" {
   description = "ID of the S3 VPC endpoint to allow in the bucket policy"
   type        = string

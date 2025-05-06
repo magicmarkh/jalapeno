@@ -8,7 +8,3 @@ output "bucket_arn" {
   value       = aws_s3_bucket.secure_bucket.arn
 }
 
-output "folder_keys" {
-  description = "Keys of any folders created"
-  value       = [for o in aws_s3_object.folders : o.key]
-}
