@@ -90,3 +90,7 @@ module "targets" {
   windows_target_1_private_ip = var.windows_target_1_private_ip
   linux_target_1_private_ip = var.linux_target_1_private_ip
 }
+
+//module "cyberark_connectors" {
+  
+//}

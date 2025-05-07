@@ -88,3 +88,13 @@ variable "windows_target_1_private_ip" {
   description = "private ip of windows target 1"
   type = string
 }
+
+variable "generic_connector_1_private_ip" {
+  description = "private ip of windows target 1"
+  type = string
+}
+
+variable "sia_aws_connector_1_private_ip" {
+  description = "private ip of windows target 1"
+  type = string
+}

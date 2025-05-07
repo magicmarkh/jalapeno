@@ -96,9 +96,9 @@ resource "aws_security_group" "rdp_internal_flat" {
 dynamic "ingress" {
   for_each = var.internal_subnets
   content {
-    description = "SSH access"
-    from_port   = 389
-    to_port     = 389
+    description = "RDP access"
+    from_port   = 3389
+    to_port     = 3389
     protocol    = "tcp"
     cidr_blocks = [ingress.value]
   }
