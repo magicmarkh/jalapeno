@@ -28,3 +28,13 @@ output "ssh_internal_flat_sg_name" {
   description = "The name of the security group"
   value = aws_security_group.ssh_internal_flat.name
 }
+
+output "rdp_internal_flat_sg_id" {
+  description = "The ID of the security group"
+  value = aws_security_group.rdp_internal_flat.id
+}
+
+output "rdp_internal_flat_sg_name" {
+  description = "The name of the security group"
+  value = aws_security_group.rdp_internal_flat.name
+}

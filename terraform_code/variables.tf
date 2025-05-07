@@ -46,11 +46,6 @@ variable "private_subnet_cidr" {
   type = string
 }
 
-variable "trusted_ips" {
-  description = "trusted public IP's"
-  type = list(string)
-}
-
 variable "amzn_linux_ami_id" {
   description = "ami id for amazon linux ec2"
   type = string
@@ -67,4 +62,19 @@ variable "iScheduler" {
   description = "use if the system should be shutdown nightly"
   type = string
   default = "US_E_office"
+}
+
+variable "trusted_ips" {
+  description = "trusted public IP's"
+  type = list(string)
+}
+
+variable "automation_station_private_ip" {
+  description = "private ip of automation station"
+  type = string
+}
+
+variable "dc1_private_ip" {
+  description = "private ip of dc1"
+  type = string
 }

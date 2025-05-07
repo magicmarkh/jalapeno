@@ -87,3 +87,33 @@ dynamic "ingress" {
     Owner = var.asset_owner_name
   }
 }
+
+resource "aws_security_group" "rdp_internal_flat" {
+  name        = "${var.team_name}-internal-flat-rdp-sg"
+  description = "Allow SSH only from internal subnets"
+  vpc_id      = var.vpc_id
+
+dynamic "ingress" {
+  for_each = var.internal_subnets
+  content {
+    description = "SSH access"
+    from_port   = 389
+    to_port     = 389
+    protocol    = "tcp"
+    cidr_blocks = [ingress.value]
+  }
+}
+
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name  = "${var.team_name}-internal-flat-rdp-sg"
+    Owner = var.asset_owner_name
+  }
+}

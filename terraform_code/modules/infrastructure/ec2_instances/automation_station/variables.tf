@@ -5,6 +5,7 @@ variable "asset_owner_name" {}
 variable "ami_id" {}
 variable "iScheduler" {}
 variable "vpc_security_group_ids" {}
+variable "private_ip_address" {}
 
 variable "instance_type" {
   description = "instance type to be deployed"

@@ -59,5 +59,18 @@ module "automation_station" {
   key_name          = module.key_pair.key_name
   iScheduler        = var.iScheduler
   vpc_security_group_ids = [module.security_groups.ssh_internal_flat_sg_id]
+  private_ip_address = var.automation_station_private_ip
 }
 
+module "dc" {
+  source            = "./modules/infrastructure/ec2_instances/dc"
+  vpc_id            = module.vpc.vpc_id
+  team_name         = var.team_name
+  asset_owner_name  = var.asset_owner_name
+  windows_ami_id = var.amzn_windows_server_ami_id
+  key_name          = module.key_pair.key_name
+  iScheduler        = var.iScheduler
+  security_group_ids = module.security_groups.trusted_rdp_external_security_group_id
+  private_ip = var.dc1_private_ip
+  private_subnet_id = module.vpc.private_subnet_id
+}

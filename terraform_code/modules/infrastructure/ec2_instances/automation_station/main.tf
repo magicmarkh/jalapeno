@@ -1,4 +1,6 @@
 // modules/automation_station/main.tf
+
+#create the instance
 resource "aws_instance" "automation_station" {
   ami                    = var.ami_id
   instance_type          = var.instance_type
@@ -6,6 +8,7 @@ resource "aws_instance" "automation_station" {
   key_name               = var.key_name
   vpc_security_group_ids = var.vpc_security_group_ids
   associate_public_ip_address = false
+  private_ip   = var.private_ip_address
 
   tags = {
     Name = "${var.team_name}-automation-station"
