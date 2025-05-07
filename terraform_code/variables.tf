@@ -78,3 +78,13 @@ variable "dc1_private_ip" {
   description = "private ip of dc1"
   type = string
 }
+
+variable "linux_target_1_private_ip" {
+  description = "private ip of linux target 1"
+  type = string
+}
+
+variable "windows_target_1_private_ip" {
+  description = "private ip of windows target 1"
+  type = string
+}

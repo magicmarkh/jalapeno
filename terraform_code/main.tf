@@ -74,3 +74,19 @@ module "dc" {
   private_ip = var.dc1_private_ip
   private_subnet_id = module.vpc.private_subnet_id
 }
+
+module "targets" {
+  source = "./modules/infrastructure/ec2_instances/targets"
+  vpc_id = module.vpc.vpc_id
+  team_name = var.team_name
+  asset_owner_name = var.asset_owner_name
+  windows_ami_id = var.amzn_windows_server_ami_id
+  key_name = module.key_pair.key_name
+  iScheduler = var.iScheduler
+  linux_ami_id = var.amzn_linux_ami_id
+  windows_security_group_ids = module.security_groups.rdp_internal_flat_sg_id
+  linux_security_group_ids = module.security_groups.ssh_internal_flat_sg_id
+  private_subnet_id = module.vpc.private_subnet_id
+  windows_target_1_private_ip = var.windows_target_1_private_ip
+  linux_target_1_private_ip = var.linux_target_1_private_ip
+}
