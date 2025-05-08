@@ -91,6 +91,16 @@ module "targets" {
   linux_target_1_private_ip = var.linux_target_1_private_ip
 }
 
-//module "cyberark_connectors" {
-  
-//}
+module "cyberark_connectors" {
+  source = "./modules/infrastructure/ec2_instances/cyberark_connectors"
+  vpc_id = module.vpc.vpc_id
+  team_name = var.team_name
+  asset_owner_name = var.asset_owner_name
+  windows_ami_id = var.amzn_windows_server_ami_id
+  key_name = module.key_pair.key_name
+  iScheduler = var.iScheduler
+  windows_security_group_ids = module.security_groups.rdp_internal_flat_sg_id
+  private_subnet_id = module.vpc.private_subnet_id
+  generic_connector_1_private_ip = var.generic_connector_1_private_ip
+  sia_aws_connector_1_private_ip = var.sia_aws_connector_1_private_ip
+}
