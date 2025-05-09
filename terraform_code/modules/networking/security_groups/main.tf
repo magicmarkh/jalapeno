@@ -117,3 +117,33 @@ dynamic "ingress" {
     Owner = var.asset_owner_name
   }
 }
+
+resource "aws_security_group" "jenkins_8080" {
+  name        = "${var.team_name}-jenkins-8080-sg"
+  description = "8080"
+  vpc_id      = var.vpc_id
+
+dynamic "ingress" {
+  for_each = var.internal_subnets
+  content {
+    description = "Jenkins Web Access"
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "tcp"
+    cidr_blocks = [ingress.value]
+  }
+}
+
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name  = "${var.team_name}-jenkins-8080-sg"
+    Owner = var.asset_owner_name
+  }
+}

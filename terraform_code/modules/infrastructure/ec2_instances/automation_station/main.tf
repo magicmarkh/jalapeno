@@ -1,4 +1,8 @@
 // modules/automation_station/main.tf
+# load the bootstrap script
+locals {
+  bootstrap_script = templatefile("${path.module}/scripts/init.sh", {})
+}
 
 #create the instance
 resource "aws_instance" "automation_station" {
@@ -9,6 +13,9 @@ resource "aws_instance" "automation_station" {
   vpc_security_group_ids = var.vpc_security_group_ids
   associate_public_ip_address = false
   private_ip   = var.private_ip_address
+
+  # <<< this kicks off your init.sh on first boot
+  user_data = local.bootstrap_script
 
   tags = {
     Name = "${var.team_name}-automation-station"

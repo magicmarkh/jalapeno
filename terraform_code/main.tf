@@ -49,6 +49,15 @@ module "ec2_public_server" {
   windows_security_group_ids = module.security_groups.trusted_rdp_external_security_group_id
 }
 
+module "iam_roles" {
+  source = "./modules/security/iam_roles"
+  team_name = var.team_name
+  s3_bucket_arn = module.s3_bucket.bucket_arn
+  vpc_arn = module.vpc.vpc_arn
+  asset_owner_name = var.asset_owner_name
+}
+
+
 module "automation_station" {
   source            = "./modules/infrastructure/ec2_instances/automation_station"
   vpc_id            = module.vpc.vpc_id
@@ -58,7 +67,7 @@ module "automation_station" {
   ami_id            = var.amzn_linux_ami_id
   key_name          = module.key_pair.key_name
   iScheduler        = var.iScheduler
-  vpc_security_group_ids = [module.security_groups.ssh_internal_flat_sg_id]
+  vpc_security_group_ids = [module.security_groups.ssh_internal_flat_sg_id,module.security_groups.jenkins_8080_flat_sg_id]
   private_ip_address = var.automation_station_private_ip
 }
 

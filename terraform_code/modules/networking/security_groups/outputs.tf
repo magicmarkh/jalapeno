@@ -38,3 +38,13 @@ output "rdp_internal_flat_sg_name" {
   description = "The name of the security group"
   value = aws_security_group.rdp_internal_flat.name
 }
+
+output "jenkins_8080_flat_sg_id" {
+  description = "The ID of the security group"
+  value = aws_security_group.jenkins_8080.id
+}
+
+output "jenkins_8080_flat_sg_name" {
+  description = "The name of the security group"
+  value = aws_security_group.jenkins_8080.name
+}
