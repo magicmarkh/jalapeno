@@ -30,7 +30,7 @@ dynamic "ingress" {
 
 resource "aws_security_group" "rdp_from_trusted_ips" {
   name        = "${var.team_name}-trusted-external-rdp-sg"
-  description = "Allow SSH only from trusted IPs"
+  description = "Allow RDP only from trusted IPs"
   vpc_id      = var.vpc_id
 
 dynamic "ingress" {
@@ -90,7 +90,7 @@ dynamic "ingress" {
 
 resource "aws_security_group" "rdp_internal_flat" {
   name        = "${var.team_name}-internal-flat-rdp-sg"
-  description = "Allow SSH only from internal subnets"
+  description = "Allow RDP only from internal subnets"
   vpc_id      = var.vpc_id
 
 dynamic "ingress" {

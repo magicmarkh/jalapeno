@@ -10,7 +10,7 @@ variable "private_ip_address" {}
 variable "instance_type" {
   description = "instance type to be deployed"
   type = string
-  default = "t2.medium"
+  default = "t3a.medium"
 }
 variable "key_name" {
   description = "The name of the AWS key pair to use for the instance"

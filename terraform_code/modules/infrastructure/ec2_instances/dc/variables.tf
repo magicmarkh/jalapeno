@@ -10,5 +10,5 @@ variable "private_ip" {}
 variable "windows_instance_type" {
   description = "instance type to be deployed"
   type = string
-  default = "t3.medium"
+  default = "t3a.medium"
 }

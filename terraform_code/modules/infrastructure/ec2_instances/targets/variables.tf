@@ -13,13 +13,13 @@ variable "linux_target_1_private_ip" {}
 variable "linux_instance_type" {
   description = "instance type to be deployed"
   type = string
-  default = "t2.micro"
+  default = "t3a.micro"
 }
 
 variable "windows_instance_type" {
   description = "instance type to be deployed"
   type = string
-  default = "t3.medium"
+  default = "t3a.medium"
 }
 variable "key_name" {
   description = "The name of the AWS key pair to use for the instance"
