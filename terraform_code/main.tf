@@ -79,7 +79,7 @@ module "dc" {
   windows_ami_id = var.amzn_windows_server_ami_id
   key_name          = module.key_pair.key_name
   iScheduler        = var.iScheduler
-  security_group_ids = module.security_groups.rdp_internal_flat_sg_id
+  security_group_ids = [module.security_groups.rdp_internal_flat_sg_id,module.security_groups.domain_controller_sg_id]
   private_ip = var.dc1_private_ip
   private_subnet_id = module.vpc.private_subnet_id
 }

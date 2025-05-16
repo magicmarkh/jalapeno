@@ -48,3 +48,14 @@ output "jenkins_8080_flat_sg_name" {
   description = "The name of the security group"
   value = aws_security_group.jenkins_8080.name
 }
+
+output "domain_controller_sg_id" {
+  description = "The ID of the security group"
+  value = aws_security_group.domain_controller_sg.id
+}
+
+output "domain_controller_sg_name" {
+  description = "The name of the security group"
+  value = aws_security_group.domain_controller_sg.name
+}
+
