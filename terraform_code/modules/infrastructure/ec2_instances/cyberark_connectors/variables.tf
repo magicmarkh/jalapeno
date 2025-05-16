@@ -5,7 +5,7 @@ variable "asset_owner_name" {}
 variable "windows_ami_id" {}
 variable "iScheduler" {}
 variable "windows_security_group_ids" {}
-variable "generic_connector_1_private_ip" {}
+variable "connector_1_private_ip" {}
 variable "sia_aws_connector_1_private_ip" {}
 
 

@@ -55,7 +55,7 @@ variable "amzn_linux_ami_id" {
 variable "amzn_windows_server_ami_id" {
   description = "ami id for amazon windows ec2"
   type = string
-  default = "ami-09466586c38a7b804"
+  default = "ami-06fbbb433da1a5bf7"
 }
 
 variable "iScheduler" {
@@ -89,7 +89,7 @@ variable "windows_target_1_private_ip" {
   type = string
 }
 
-variable "generic_connector_1_private_ip" {
+variable "connector_1_private_ip" {
   description = "private ip of windows target 1"
   type = string
 }

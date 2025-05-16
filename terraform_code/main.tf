@@ -110,6 +110,6 @@ module "cyberark_connectors" {
   iScheduler = var.iScheduler
   windows_security_group_ids = module.security_groups.rdp_internal_flat_sg_id
   private_subnet_id = module.vpc.private_subnet_id
-  generic_connector_1_private_ip = var.generic_connector_1_private_ip
+  connector_1_private_ip = var.connector_1_private_ip
   sia_aws_connector_1_private_ip = var.sia_aws_connector_1_private_ip
 }
