@@ -113,3 +113,16 @@ module "cyberark_connectors" {
   connector_1_private_ip = var.connector_1_private_ip
   sia_aws_connector_1_private_ip = var.sia_aws_connector_1_private_ip
 }
+
+module "aws_sm_secrets" {
+  source = "./modules/infrastructure/aws_sm_secrets"
+  domain_join_password = var.domain_join_password
+  domain_join_secret_name = var.domain_join_secret_name
+  domain_join_username = var.domain_join_username
+}
+
+module "secrets_hub_onboarding_role"{
+  source = "./modules/security/iam_roles/secrets_hub_onboarding_role"
+  SecretsManagerRegion = var.region
+  CyberArkSecretsHubRoleARN = var.CyberArkSecretsHubRoleARN
+}

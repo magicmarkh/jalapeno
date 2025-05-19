@@ -1,0 +1,11 @@
+resource "aws_secretsmanager_secret" "domain_joiner" {
+  name = var.domain_join_secret_name
+}
+
+resource "aws_secretsmanager_secret_version" "domain_joiner_value" {
+  secret_id     = aws_secretsmanager_secret.domain_joiner.id
+  secret_string = jsonencode({
+    username = var.domain_join_username,
+    password = var.domain_join_password
+  })
+}

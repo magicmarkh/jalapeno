@@ -98,3 +98,24 @@ variable "sia_aws_connector_1_private_ip" {
   description = "private ip of windows target 1"
   type = string
 }
+
+variable "domain_join_username" {
+  description = "Domain join username (e.g., CORP\\joinuser)"
+  type        = string
+}
+
+variable "domain_join_password" {
+  description = "Domain join password"
+  type        = string
+  sensitive   = true
+}
+
+variable "domain_join_secret_name" {
+  description = "Secrets Manager secret name"
+  type        = string
+}
+
+variable "CyberArkSecretsHubRoleARN" {
+  description = "The Secrets Hub tenant role ARN which will be trusted by this role - get this from the cyberark tenant in secrets hub settings."
+  type        = string
+}
