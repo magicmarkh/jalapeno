@@ -1,5 +1,8 @@
 resource "aws_secretsmanager_secret" "domain_joiner" {
   name = var.domain_join_secret_name
+  tags = {
+    "Sourced by CyberArk" = ""
+  }
 }
 
 resource "aws_secretsmanager_secret_version" "domain_joiner_value" {
