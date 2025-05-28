@@ -3,16 +3,16 @@ resource "aws_security_group" "ssh_from_trusted_ips" {
   description = "Allow SSH only from trusted IPs"
   vpc_id      = var.vpc_id
 
-dynamic "ingress" {
-  for_each = var.trusted_ips
-  content {
-    description = "SSH access"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [ingress.value]
+  dynamic "ingress" {
+    for_each = var.trusted_ips
+    content {
+      description = "SSH access"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
-}
 
 
   egress {
@@ -33,16 +33,16 @@ resource "aws_security_group" "rdp_from_trusted_ips" {
   description = "Allow RDP only from trusted IPs"
   vpc_id      = var.vpc_id
 
-dynamic "ingress" {
-  for_each = var.trusted_ips
-  content {
-    description = "rdp access"
-    from_port   = 3389
-    to_port     = 3389
-    protocol    = "tcp"
-    cidr_blocks = [ingress.value]
+  dynamic "ingress" {
+    for_each = var.trusted_ips
+    content {
+      description = "rdp access"
+      from_port   = 3389
+      to_port     = 3389
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
-}
 
 
   egress {
@@ -63,16 +63,16 @@ resource "aws_security_group" "ssh_internal_flat" {
   description = "Allow SSH only from internal subnets"
   vpc_id      = var.vpc_id
 
-dynamic "ingress" {
-  for_each = var.internal_subnets
-  content {
-    description = "SSH access"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = [ingress.value]
+  dynamic "ingress" {
+    for_each = var.internal_subnets
+    content {
+      description = "SSH access"
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
-}
 
 
   egress {
@@ -93,16 +93,16 @@ resource "aws_security_group" "rdp_internal_flat" {
   description = "Allow RDP only from internal subnets"
   vpc_id      = var.vpc_id
 
-dynamic "ingress" {
-  for_each = var.internal_subnets
-  content {
-    description = "RDP access"
-    from_port   = 3389
-    to_port     = 3389
-    protocol    = "tcp"
-    cidr_blocks = [ingress.value]
+  dynamic "ingress" {
+    for_each = var.internal_subnets
+    content {
+      description = "RDP access"
+      from_port   = 3389
+      to_port     = 3389
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
-}
 
 
   egress {
@@ -123,16 +123,16 @@ resource "aws_security_group" "jenkins_8080" {
   description = "8080"
   vpc_id      = var.vpc_id
 
-dynamic "ingress" {
-  for_each = var.internal_subnets
-  content {
-    description = "Jenkins Web Access"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    cidr_blocks = [ingress.value]
+  dynamic "ingress" {
+    for_each = var.internal_subnets
+    content {
+      description = "Jenkins Web Access"
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = "tcp"
+      cidr_blocks = [ingress.value]
+    }
   }
-}
 
 
   egress {
@@ -218,7 +218,7 @@ resource "aws_security_group" "domain_controller_sg" {
   description = "Security Group for Windows 2016 Domain Controller (AD & DNS)"
   vpc_id      = var.vpc_id
 
-   dynamic "ingress" {
+  dynamic "ingress" {
     for_each = local.domain_controller_ports
     content {
       description = ingress.value.description
@@ -239,5 +239,52 @@ resource "aws_security_group" "domain_controller_sg" {
 
   tags = {
     Name = "domain-controller-sg"
+  }
+}
+
+
+locals {
+  sia_windows_target = [
+    {
+      description = "SMB"
+      from_port   = 445
+      to_port     = 445
+      protocol    = "tcp"
+    },
+    {
+      description = "WMI"
+      from_port   = 135
+      to_port     = 135
+      protocol    = "tcp"
+    }
+  ]
+}
+
+resource "aws_security_group" "sia_windows_target_sg" {
+  name        = "sia-windows-target-sg"
+  description = "Ports required for SIA access to Windows RDP based targets"
+  vpc_id      = var.vpc_id
+
+  dynamic "ingress" {
+    for_each = local.sia_windows_target
+    content {
+      description = ingress.value.description
+      from_port   = ingress.value.from_port
+      to_port     = ingress.value.to_port
+      protocol    = ingress.value.protocol
+      cidr_blocks = var.internal_subnets
+    }
+  }
+
+  egress {
+    description = "Allow all outbound traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "sia-windows-target-sg"
   }
 }

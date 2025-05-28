@@ -20,7 +20,7 @@ resource "aws_instance" "public_windows_server" {
   subnet_id                   = var.private_subnet_id
   associate_public_ip_address = false
   key_name                    = var.key_name
-  vpc_security_group_ids      = [var.windows_security_group_ids]
+  vpc_security_group_ids      = var.windows_security_group_ids
   private_ip = var.windows_target_1_private_ip
 
   tags = {

@@ -59,3 +59,12 @@ output "domain_controller_sg_name" {
   value = aws_security_group.domain_controller_sg.name
 }
 
+output "dsia_windows_target_sg_id" {
+  description = "The ID of the security group"
+  value = aws_security_group.domain_controller_sg.id
+}
+
+output "dsia_windows_target_sg_name" {
+  description = "The name of the security group"
+  value = aws_security_group.domain_controller_sg.name
+}

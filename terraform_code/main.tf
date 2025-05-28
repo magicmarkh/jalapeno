@@ -93,7 +93,7 @@ module "targets" {
   key_name                    = module.key_pair.key_name
   iScheduler                  = var.iScheduler
   linux_ami_id                = var.amzn_linux_ami_id
-  windows_security_group_ids  = module.security_groups.rdp_internal_flat_sg_id
+  windows_security_group_ids  = [module.security_groups.rdp_internal_flat_sg_id, module.security_groups.ssh_internal_flat_sg_id]
   linux_security_group_ids    = module.security_groups.ssh_internal_flat_sg_id
   private_subnet_id           = module.vpc.private_subnet_id
   windows_target_1_private_ip = var.windows_target_1_private_ip

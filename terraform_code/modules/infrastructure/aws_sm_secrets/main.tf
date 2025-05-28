@@ -3,6 +3,9 @@ resource "aws_secretsmanager_secret" "domain_joiner" {
   tags = {
     "Sourced by CyberArk" = ""
   }
+  lifecycle {
+    ignore_changes = [ tags ]
+  }
 }
 
 resource "aws_secretsmanager_secret_version" "domain_joiner_value" {
