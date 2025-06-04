@@ -4,7 +4,7 @@ resource "aws_secretsmanager_secret" "domain_joiner" {
     "Sourced by CyberArk" = ""
   }
   lifecycle {
-    ignore_changes = [ tags ]
+    ignore_changes = all
   }
 }
 
