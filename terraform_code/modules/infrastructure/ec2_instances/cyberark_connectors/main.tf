@@ -14,6 +14,7 @@ resource "aws_instance" "connector_1" {
   }
 }
 
+/*
 resource "aws_instance" "sia_aws_connector" {
   ami                         = var.windows_ami_id
   instance_type               = var.windows_instance_type
@@ -32,4 +33,4 @@ resource "aws_instance" "sia_aws_connector" {
     lifecycle {
     ignore_changes = [user_data]
   }
-}
+}*/

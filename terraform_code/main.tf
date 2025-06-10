@@ -93,7 +93,7 @@ module "targets" {
   key_name                    = module.key_pair.key_name
   iScheduler                  = var.iScheduler
   linux_ami_id                = var.amzn_linux_ami_id
-  windows_security_group_ids  = [module.security_groups.rdp_internal_flat_sg_id, module.security_groups.ssh_internal_flat_sg_id]
+  windows_security_group_ids  = [module.security_groups.rdp_internal_flat_sg_id, module.security_groups.sia_windows_target_sg_id]
   linux_security_group_ids    = module.security_groups.ssh_internal_flat_sg_id
   private_subnet_id           = module.vpc.private_subnet_id
   windows_target_1_private_ip = var.windows_target_1_private_ip
@@ -125,4 +125,17 @@ module "secrets_hub_onboarding_role" {
   source                    = "./modules/security/iam_roles/secrets_hub_onboarding_role"
   SecretsManagerRegion      = var.region
   CyberArkSecretsHubRoleARN = var.CyberArkSecretsHubRoleARN
+}
+
+module "aws_sia_conector" {
+  source = "./modules/infrastructure/ec2_instances/aws_sia_connector"
+  private_subnet_id = module.vpc.private_subnet_id
+  key_name = module.key_pair.key_name
+  team_name = var.team_name
+  linux_security_group_ids = module.security_groups.ssh_internal_flat_sg_id
+  vpc_id = module.vpc.vpc_id
+  linux_ami_id = var.amzn_linux_ami_id
+  iScheduler = var.iScheduler
+  asset_owner_name = var.asset_owner_name
+  sia_aws_connector_1_private_ip = var.sia_aws_connector_1_private_ip
 }
