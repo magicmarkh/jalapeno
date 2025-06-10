@@ -21,10 +21,10 @@ variable "key_name" {
 }
 
 
-variable "host_name" {
+variable "hostname" {
   description = "Desired hostname on boot"
   type        = string
-  default     = "test-sia-aws-connector"
+  default     = "us-ent-east-sia-aws-connector-1"
 }
 /*
 variable "cyberark_base_url" {
