@@ -32,6 +32,8 @@ module "security_groups" {
   trusted_ips      = var.trusted_ips
   team_name        = var.team_name
   internal_subnets = ["${var.public_subnet_cidr}", "${var.private_subnet_cidr}"]
+  private_subnet_cidr = var.private_subnet_cidr
+  public_subnet_cidr = var.public_subnet_cidr
 }
 
 module "ec2_public_server" {
@@ -138,4 +140,18 @@ module "aws_sia_conector" {
   iScheduler = var.iScheduler
   asset_owner_name = var.asset_owner_name
   sia_aws_connector_1_private_ip = var.sia_aws_connector_1_private_ip
+}
+
+module "db_subnet_group" {
+  source             = "./modules/networking/db_subnet_group"
+  team_name       = var.team_name
+  private_subnet_ids = [module.vpc.private_subnet_id,module.vpc.public_subnet_id]
+}
+
+module "mysql" {
+  source = "./modules/infrastructure/rds/mysql"
+  iScheduler = var.iScheduler
+  db_subnet_group_name = module.db_subnet_group.db_subnet_group_name
+  asset_owner_name = var.asset_owner_name
+  vpc_security_group_ids = [module.security_groups.mysql_target_sg_id]
 }

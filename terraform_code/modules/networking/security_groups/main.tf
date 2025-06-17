@@ -288,3 +288,28 @@ resource "aws_security_group" "sia_windows_target_sg" {
     Name = "sia-windows-target-sg"
   }
 }
+
+resource "aws_security_group" "mysql_target_sg" {
+  name        = "${var.team_name}-mysql-sg"
+  description = "Allow MySQL from private subnets only"
+  vpc_id      = var.vpc_id
+
+  ingress {
+    description = "MySQL access from private subnets"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
+    cidr_blocks = [var.private_subnet_cidr]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name        = "${var.team_name}-mysql-sg"
+  }
+}

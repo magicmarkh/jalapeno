@@ -68,3 +68,8 @@ output "sia_windows_target_sg_name" {
   description = "The name of the security group"
   value = aws_security_group.sia_windows_target_sg.name
 }
+
+output "mysql_target_sg_id" {
+  description = "The name of the security group"
+  value = aws_security_group.mysql_target_sg.id
+}
