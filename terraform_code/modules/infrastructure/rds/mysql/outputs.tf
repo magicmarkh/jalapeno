@@ -1,5 +1,4 @@
-output "generated_password" {
-  description = "Generated MySQL password"
-  value       = random_password.mysql_admin.result
-  sensitive   = true
+output "mysql_generated_password" {
+  value     = random_password.mysql_admin_password.result
+  sensitive = true
 }

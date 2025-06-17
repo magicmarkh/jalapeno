@@ -1,4 +1,4 @@
-resource "random_password" "mysql_admin" {
+resource "random_password" "mysql_admin_password" {
   length  = 16
   special = true
 }
@@ -14,7 +14,7 @@ resource "aws_db_instance" "mysql" {
   instance_class         = var.instance_class
   allocated_storage      = var.allocated_storage
   username               = var.username
-  password               = random_password.mysql_admin.result
+  password               = random_password.mysql_admin_password.result
   db_name                = var.db_name
   db_subnet_group_name   = var.db_subnet_group_name
   vpc_security_group_ids = var.vpc_security_group_ids
