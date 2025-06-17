@@ -8,13 +8,13 @@ resource "aws_instance" "sia_aws_connector" {
   private_ip                  = var.sia_aws_connector_1_private_ip
 
   user_data = templatefile("${path.module}/templates/init.sh.tpl", {
-    hostname               = var.hostname,
-    rename_hostname_script = file("${path.module}/scripts/init.sh")
+    hostname    = var.hostname,
+    init_script = file("${path.module}/scripts/init.sh")
   })
 
   tags = {
-    Name          = "${var.team_name}-aws-sia-connector-1"
-    Owner         = var.asset_owner_name
-    CA_iScheduler = var.iScheduler
+    Name           = "${var.team_name}-aws-sia-connector-1"
+    Owner          = var.asset_owner_name
+    CA_iScheduler  = var.iScheduler
   }
 }

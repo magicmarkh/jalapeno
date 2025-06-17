@@ -1,25 +1,26 @@
 #!/bin/bash
+
 FLAG="/var/log/sia_init_done"
 SCRIPT_DIR="/opt/sia"
 NEW_HOSTNAME="${hostname}"
 
 if [ ! -f "$FLAG" ]; then
-  echo "First boot: configuring SIA connector..."
+  echo "[init] First boot detected. Setting up connector..."
 
   mkdir -p "$SCRIPT_DIR"
 
-  # --- Write rename-hostname.sh ---
-  cat <<'EOF' > "$SCRIPT_DIR/rename-hostname.sh"
-${rename_hostname_script}
+  # Write init.sh to disk
+  cat <<'EOF' > "$SCRIPT_DIR/init.sh"
+${init_script}
 EOF
 
-  chmod +x "$SCRIPT_DIR/rename-hostname.sh"
-  "$SCRIPT_DIR/rename-hostname.sh" "$NEW_HOSTNAME"
+  chmod +x "$SCRIPT_DIR/init.sh"
 
-  echo "Registering connector with CyberArk..."
-  # TODO: add CyberArk registration logic here
+  # Run it with the hostname
+  "$SCRIPT_DIR/init.sh" "$NEW_HOSTNAME"
 
+  # Mark init complete
   touch "$FLAG"
 else
-  echo "SIA connector already initialized. Skipping."
+  echo "[init] Already initialized. Skipping."
 fi
