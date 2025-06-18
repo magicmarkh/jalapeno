@@ -73,3 +73,8 @@ output "mysql_target_sg_id" {
   description = "The name of the security group"
   value = aws_security_group.mysql_target_sg.id
 }
+
+output "postgresql_target_sg_id" {
+  description = "The name of the security group"
+  value = aws_security_group.posgresql_target_sg.id
+}

@@ -155,3 +155,12 @@ module "mysql" {
   asset_owner_name = var.asset_owner_name
   vpc_security_group_ids = [module.security_groups.mysql_target_sg_id]
 }
+
+module "postgresql" {
+  source = "./modules/infrastructure/rds/postgresql"
+  iScheduler = var.iScheduler
+  db_subnet_group_name = module.db_subnet_group.db_subnet_group_name
+  asset_owner_name = var.asset_owner_name
+  vpc_security_group_ids = [module.security_groups.mysql_target_sg_id]
+  team_name = var.team_name
+}
