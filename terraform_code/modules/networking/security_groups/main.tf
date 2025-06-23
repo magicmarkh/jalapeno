@@ -155,60 +155,77 @@ locals {
       from_port   = 53
       to_port     = 53
       protocol    = "tcp"
+      name        = "DNS TCP"
     },
     {
       description = "DNS UDP"
       from_port   = 53
       to_port     = 53
       protocol    = "udp"
+      name        = "DNS UDP"
     },
     {
       description = "LDAP TCP"
       from_port   = 389
       to_port     = 389
       protocol    = "tcp"
+      name        = "LDAP TCP"
     },
     {
       description = "LDAP UDP"
       from_port   = 389
       to_port     = 389
       protocol    = "udp"
+      name        = "LDAP UDP"
     },
     {
       description = "Kerberos TCP"
       from_port   = 88
       to_port     = 88
       protocol    = "tcp"
+      name        = "Kerberos TCP"
     },
     {
       description = "Kerberos UDP"
       from_port   = 88
       to_port     = 88
       protocol    = "udp"
+      name        = "Kerberos UDP"
     },
     {
       description = "Global Catalog LDAP"
       from_port   = 3268
       to_port     = 3268
       protocol    = "tcp"
+      name        = "Global Catalog LDAP"
     },
     {
       description = "Netlogon"
       from_port   = 445
       to_port     = 445
       protocol    = "tcp"
+      name        = "NetLogon Port"
     },
     {
       description = "RPC Endpoint Mapper"
       from_port   = 135
       to_port     = 135
       protocol    = "tcp"
+      name        = "RPC Endpoint Mapper"
     },
     {
       description = "Ephemeral Ports"
       from_port   = 1024
       to_port     = 65535
       protocol    = "tcp"
+      name        = "Ephemeral Ports"
+    },
+    {
+      description = "Kerberos Password Change Requests"
+      from_port   = 464
+      to_port     = 464
+      protocol    = "tcp"
+      name        = "Kerberos Password Change"
     }
   ]
 }
