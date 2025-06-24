@@ -119,3 +119,24 @@ variable "CyberArkSecretsHubRoleARN" {
   description = "The Secrets Hub tenant role ARN which will be trusted by this role - get this from the cyberark tenant in secrets hub settings."
   type        = string
 }
+
+variable "connector_pool_name" {
+  description = "Name of the connector pool you're adding the connector to"
+  type        = string
+}
+
+variable "cyberark_secret_arn" {
+  description = "arn of the identity service account. Used if retrieving the service account from ASM."
+  type        = string
+}
+
+variable "identity_tenant_id" {
+  description = "your cyberark tenant id. Example: 'https://abc123.id.cyberark.cloud' woud be abc123"
+  type        = string
+}
+
+variable "platform_tenant_name" {
+  description = "name of your cyberark tenant. Example: 'https://acme.cyberark.cloud' would be acme"
+  type        = string
+}
+

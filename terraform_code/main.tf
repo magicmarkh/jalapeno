@@ -140,6 +140,11 @@ module "aws_sia_conector" {
   iScheduler = var.iScheduler
   asset_owner_name = var.asset_owner_name
   sia_aws_connector_1_private_ip = var.sia_aws_connector_1_private_ip
+  region = var.region
+  connector_pool_name = var.connector_pool_name
+  cyberark_secret_arn =  var.cyberark_secret_arn
+  identity_tenant_id =  var.identity_tenant_id
+  platform_tenant_name = var.platform_tenant_name
 }
 
 module "db_subnet_group" {
