@@ -6,6 +6,7 @@ variable "asset_owner_name" {}
 variable "linux_ami_id" {}
 variable "iScheduler" {}
 variable "linux_security_group_ids" {}
+variable "ec2_asm_instance_profile_name" {}
 variable "sia_aws_connector_1_private_ip" {
   description = "IP of the connector"
   type = string
@@ -39,12 +40,6 @@ variable "identity_tenant_id" {
 variable "cyberark_secret_arn" {
   description = "Full arn of value stored in ASM"
   type = string
-}
-
-variable "sia_aws_role_name" {
-  description = "name of the role to be created. The role allows retrieval of the identity secret from ASM"
-  type = string
-  default = "us-ent-east-sia-connector-role"
 }
 
 variable "platform_tenant_name" {

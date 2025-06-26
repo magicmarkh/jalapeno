@@ -11,5 +11,6 @@ resource "aws_instance" "us-ent-east-dc1" {
     Name  = "${var.team_name}-dc1"
     Owner = var.asset_owner_name
     CA_iScheduler = var.iScheduler
+    CA_iSchedulerControl = "yes"
   }
 }

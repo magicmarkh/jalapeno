@@ -9,7 +9,14 @@ variable "linux_security_group_ids" {}
 variable "windows_security_group_ids" {}
 variable "windows_target_1_private_ip" {}
 variable "linux_target_1_private_ip" {}
-
+variable "region" {}
+variable "cyberark_secret_arn" {}
+variable "identity_tenant_id" {}
+variable "platform_tenant_name" {}
+variable "workspace_id" {}
+variable "workspace_type" {}
+variable "linux_target_1_hostname" {}
+variable "ec2_asm_instance_profile_name" {}
 variable "linux_instance_type" {
   description = "instance type to be deployed"
   type = string

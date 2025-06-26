@@ -140,3 +140,13 @@ variable "platform_tenant_name" {
   type        = string
 }
 
+variable "workspace_type" {
+  description = "CSP identifier. AWS, Azure, or GCP"
+  type = string
+  default = "AWS"
+}
+
+variable "linux_target_1_hostname" {
+  description = "name of the target demo system for linux"
+  type = string
+}
