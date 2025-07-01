@@ -331,7 +331,7 @@ resource "aws_security_group" "mysql_target_sg" {
   }
 }
 
-resource "aws_security_group" "posgresql_target_sg" {
+resource "aws_security_group" "postgresql_target_sg" {
   name        = "${var.team_name}-postgresql-sg"
   description = "Allow PostgreSQL from private subnets only"
   vpc_id      = var.vpc_id
