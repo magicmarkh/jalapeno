@@ -44,7 +44,6 @@ resource "aws_instance" "linux_target_1" {
     Name  = "${var.team_name}-linux-target-1"
     Owner = var.asset_owner_name
     CA_iScheduler = var.iScheduler
-    CA_iSchedulerControl = "yes"
   }
 }
 
@@ -62,6 +61,5 @@ resource "aws_instance" "public_windows_server" {
     Name  = "${var.team_name}-windows-target-1"
     Owner = var.asset_owner_name
     CA_iScheduler = var.iScheduler
-    CA_iSchedulerControl = "yes"
   }
 }

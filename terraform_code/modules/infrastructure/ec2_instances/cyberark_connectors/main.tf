@@ -11,6 +11,5 @@ resource "aws_instance" "connector_1" {
     Name  = "${var.team_name}-connector-1"
     Owner = var.asset_owner_name
     CA_iScheduler = var.iScheduler
-    CA_iSchedulerControl = "yes"
   }
 }

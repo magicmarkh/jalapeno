@@ -146,7 +146,6 @@ module "targets" {
   vpc_id                        = module.vpc.vpc_id
   team_name                     = var.team_name
   asset_owner_name              = var.asset_owner_name
-  windows_ami_id                = var.amzn_windows_server_ami_id
   key_name                      = module.key_pair.key_name
   iScheduler                    = var.iScheduler
   linux_ami_id                  = var.amzn_linux_ami_id
