@@ -3,7 +3,7 @@ variable "private_subnet_id" {}
 variable "team_name" {}
 variable "asset_owner_name" {}
 variable "linux_ami_id" {}
-variable "windows_ami_id" {default = "ami-0f92a5908d7b0f379"}
+variable "windows_ami_id" {}
 variable "iScheduler" {}
 variable "linux_security_group_ids" {}
 variable "windows_security_group_ids" {}

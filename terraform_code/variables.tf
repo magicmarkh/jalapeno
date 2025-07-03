@@ -55,7 +55,7 @@ variable "amzn_linux_ami_id" {
 variable "amzn_windows_server_ami_id" {
   description = "ami id for amazon windows ec2"
   type = string
-  default = "ami-06fbbb433da1a5bf7"
+  default = "ami-0f92a5908d7b0f379"
 }
 
 variable "iScheduler" {
